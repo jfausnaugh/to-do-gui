@@ -6,8 +6,12 @@ import PySimpleGUI
 label = PySimpleGUI.Text("Type in a to-do")
 input_box = PySimpleGUI.InputText(tooltip="Enter todo", key="todo")
 add_button = PySimpleGUI.Button("Add")
+list_box = PySimpleGUI.Listbox(values=functions.get_todos(), key='todos',
+                               enable_events=True, size=[45, 10])
+edit_button = PySimpleGUI.Button("Edit")
+
 window = PySimpleGUI.Window('My To-Do App',
-                            layout=[[label], [input_box, add_button]],
+                            layout=[[label], [input_box, add_button], [list_box, edit_button]],
                             font=('Helvetica', 20))  # this is the title of the window application
 #  each square bracket around the items above represent a new row. If all in one bracket, that's one row
 while True:
@@ -20,6 +24,19 @@ while True:
             new_todo = values['todo'] + "\n"
             todos.append(new_todo)
             functions.write_todos(todos)
+            window['todos'].update(values=todos)
+        case "Edit":
+            todo_to_edit = values['todos'][0]  # by putting [0] it grabs just the string instead of List
+            new_todo = values['todo']
+
+            todos = functions.get_todos()
+            index = todos.index(todo_to_edit)  # will give index of the item you pick
+            todos[index] = new_todo  # will replace other item
+
+            functions.write_todos(todos)  # then will rewrite list to text file
+            window['todos'].update(values=todos)  # list of values will be updated with new list
+        case 'todos':
+            window['todo'].update(value=values['todos'][0])
         case PySimpleGUI.WIN_CLOSED:
             break
 
