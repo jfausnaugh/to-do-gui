@@ -9,11 +9,16 @@ PySimpleGUI.theme("Purple")
 clock = PySimpleGUI.Text('', key="Clock")
 label = PySimpleGUI.Text("Type in a to-do")
 input_box = PySimpleGUI.InputText(tooltip="Enter todo", key="todo")
-add_button = PySimpleGUI.Button("Add")
+add_button = PySimpleGUI.Button("Add", size=10)
 list_box = PySimpleGUI.Listbox(values=functions.get_todos(), key='todos',
-                               enable_events=True, size= [45, 10])
+                               enable_events=True, size=(45, 10))
 edit_button = PySimpleGUI.Button("Edit")
+# complete_button = PySimpleGUI.Button(key="Complete", size=2, image_source="complete.png",
+                                        # mouseover_colors="LightBlue2",tooltip="Complete Todo")
+# Can use an image for a button instead of just text
+
 complete_button = PySimpleGUI.Button("Complete")
+
 exit_button = PySimpleGUI.Button("Exit")
 
 window = PySimpleGUI.Window('My To-Do App',
