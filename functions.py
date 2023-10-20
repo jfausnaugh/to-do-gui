@@ -1,7 +1,7 @@
 # creating a custom function helps to reduce the amount of code we repeat
 
 def get_todos(
-        filepath="files/todos.txt"):  # function has an argument in it, so when we call it we mention the file to call
+        filepath="todos.txt"):  # function has an argument in it, so when we call it we mention the file to call
     # docstring of a function, describes function
     """ Read a text file and return the list of
     to-do items.
@@ -16,7 +16,7 @@ def get_todos(
 # file.close()
 # using a context-manager you don't need to close a file
 # better way of writing the code than the above commented out code
-def write_todos(todos_arg, filepath="files/todos.txt"):  # nondefault perameters come before default ones
+def write_todos(todos_arg, filepath="todos.txt"):  # nondefault perameters come before default ones
     """Write the to-do items list in the text file."""
     with open(filepath, 'w') as file:
         file.writelines(todos_arg)
