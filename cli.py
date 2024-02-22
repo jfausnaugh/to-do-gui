@@ -1,31 +1,33 @@
-# from functions import get_todos, write_todos
-import functions  # creates a module and imports it into this file
-import time  # module that is created by python developers, instead of one we made
+import functions
+import time
+
 
 now = time.strftime("%b %d, %Y %H:%M:%S")
 print("It is", now)
 while True:
+    # gets input from user
     user_action = input("Type add, show, edit, complete or exit: ")
-    user_action = user_action.strip()  # this will remove any extra space at the end
+    user_action = user_action.strip()
 
     if user_action.startswith("add"):
+        # adds a new to-do item to the list that user enters
         todo = user_action[4:]
 
         todos = functions.get_todos()
 
         todos.append(todo + '\n')
 
-        functions.write_todos(todos)  # since doesn't return anything, don't need to set to a variable
+        functions.write_todos(todos)
 
     elif user_action.startswith("show"):
+        # shows the current to-do list to the user
         todos = functions.get_todos()
-
-        # new_todos = [item.strip('\n') for item in todos] List comprehension
 
         for index, item in enumerate(todos):
             item = item.strip('\n')
             print(f"{index + 1}.{item}")
     elif user_action.startswith("edit"):
+        # edits an already existing to-do item
         try:
             number = int(user_action[5:])
             number = number - 1
@@ -37,10 +39,12 @@ while True:
 
             functions.write_todos(todos)
         except ValueError:
+            # will cause an exception if user doesn't enter an integer
             print("Your command is not valid.")
-            continue  # causes to start the loop back over.
+            continue
 
     elif user_action.startswith("complete"):
+        # will remove to-do item from the list
         try:
             number = int(user_action[9:])
 
@@ -59,6 +63,7 @@ while True:
             continue
 
     elif user_action.startswith("exit"):
+        # will exit the program
         break
     else:
         print("Command not valid.")
