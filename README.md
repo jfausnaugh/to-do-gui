@@ -2,4 +2,4 @@
 
 This is a basic to-do app that a user can 
 add, edit or complete items on their to-do list
-in a gui.
+in a graphical user interface or a command line.
